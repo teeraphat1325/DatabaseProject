@@ -15,7 +15,7 @@ import java.sql.Statement;
  *
  * @author tnt25
  */
-public class insertDatabase {
+public class InsertDatabase {
 
     public static void main(String[] args) {
         Connection conn = null;

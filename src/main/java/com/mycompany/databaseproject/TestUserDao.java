@@ -5,6 +5,7 @@
 package com.mycompany.databaseproject;
 
 import com.mycompany.databaseproject.dao.UserDao;
+import com.mycompany.databaseproject.helper.DatabaseHelper;
 import com.mycompany.databaseproject.model.User;
 
 /**
@@ -17,5 +18,12 @@ public class TestUserDao {
         for(User u:userDao.getAll()){
             System.out.println(u);
         }
+        User user1 = userDao.get(2);
+        System.out.println(user1);
+        
+        User newUser = new User("user3","assword",2,"F");
+        User insertedUser = userDao.save(newUser);
+        System.out.println(insertedUser);
+        DatabaseHelper.close();
     }
 }
