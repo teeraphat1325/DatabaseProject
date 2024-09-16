@@ -21,9 +21,14 @@ public class TestUserDao {
         User user1 = userDao.get(2);
         System.out.println(user1);
         
-        User newUser = new User("user3","assword",2,"F");
-        User insertedUser = userDao.save(newUser);
-        System.out.println(insertedUser);
+//        User newUser = new User("user3","assword",2,"F");
+//        User insertedUser = userDao.save(newUser);
+//        System.out.println(insertedUser);
+//        insertedUser.setGender("M");
+        user1.setGender("F");
+        userDao.update(user1);
+        User updateUser =  userDao.get(user1.getId());
+        System.out.println(updateUser);
         DatabaseHelper.close();
     }
 }

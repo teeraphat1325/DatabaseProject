@@ -85,7 +85,6 @@ public class UserDao implements Dao<User>{
             stmt.setString(2, obj.getGender());
             stmt.setString(3, obj.getPassword());
             stmt.setInt(4, obj.getRole());
-            System.out.println(stmt);
             stmt.executeUpdate();
             int id = DatabaseHelper.getInsertedId(stmt);
             obj.setId(id);
@@ -98,7 +97,25 @@ public class UserDao implements Dao<User>{
 
     @Override
     public User update(User obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<User> list = new ArrayList();
+        String sql = "UPDATE user"
+                +" SET user_name = ?, user_gender = ? ,user_password = ?, user_role = ?"
+                +" WHERE user_id = ?";
+        Connection conn = DatabaseHelper.getConnect();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, obj.getName());
+            stmt.setString(2, obj.getGender());
+            stmt.setString(3, obj.getPassword());
+            stmt.setInt(4, obj.getRole());
+            stmt.setInt(5, obj.getId());
+            int ret = stmt.executeUpdate();
+            System.out.println(ret);
+            return obj;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
