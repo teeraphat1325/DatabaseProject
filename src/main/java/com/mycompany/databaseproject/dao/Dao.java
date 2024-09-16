@@ -4,6 +4,8 @@
  */
 package com.mycompany.databaseproject.dao;
 
+import java.util.List;
+
 /**
  *
  * @author informatics
