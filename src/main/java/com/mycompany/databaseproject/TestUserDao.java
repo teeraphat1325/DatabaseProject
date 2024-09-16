@@ -29,6 +29,11 @@ public class TestUserDao {
         userDao.update(user1);
         User updateUser =  userDao.get(user1.getId());
         System.out.println(updateUser);
+        
+        userDao.delete(user1);
+        for(User u:userDao.getAll()){
+            System.out.println(u);
+        }
         DatabaseHelper.close();
     }
 }

@@ -24,7 +24,6 @@ public class UserDao implements Dao<User>{
     @Override
     public User get(int id) {
         User user = null;
-        ArrayList<User> list = new ArrayList();
         String sql = "SELECT * FROM user WHERE user_id=?";
         Connection conn = DatabaseHelper.getConnect();
         try {
@@ -120,7 +119,18 @@ public class UserDao implements Dao<User>{
 
     @Override
     public int delete(User obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "DELETE FROM user WHERE user_id=?";
+        Connection conn = DatabaseHelper.getConnect();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, obj.getId());
+            int ret = stmt.executeUpdate();
+            return ret;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return -1;
     }
     
 }
