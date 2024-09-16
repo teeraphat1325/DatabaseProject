@@ -70,7 +70,34 @@ public class UserDao implements Dao<User>{
             System.out.println(ex.getMessage());
         }
         return list;
-    }   
+    }
+    
+    @Override
+    public List<User> getAll(String where, String order) {
+        ArrayList<User> list = new ArrayList();
+        String sql = "SELECT * FROM user where " + where + " ORDER BY " + order;
+        System.out.println(sql);
+        Connection conn = DatabaseHelper.getConnect();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("user_id"));
+                user.setName(rs.getString("user_name"));
+                user.setRole(rs.getInt("user_role"));
+                user.setGender(rs.getString("user_gender"));
+                user.setPassword(rs.getString("user_password"));
+                
+                list.add(user);
+                
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
     
     @Override
     public User save(User obj) {
