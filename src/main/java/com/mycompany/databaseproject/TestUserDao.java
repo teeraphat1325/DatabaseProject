@@ -4,12 +4,18 @@
  */
 package com.mycompany.databaseproject;
 
+import com.mycompany.databaseproject.dao.UserDao;
+import com.mycompany.databaseproject.model.User;
+
 /**
  *
  * @author informatics
  */
 public class TestUserDao {
     public static void main(String[] args) {
-        
+        UserDao userDao = new UserDao();
+        for(User u:userDao.getAll()){
+            System.out.println(u);
+        }
     }
 }

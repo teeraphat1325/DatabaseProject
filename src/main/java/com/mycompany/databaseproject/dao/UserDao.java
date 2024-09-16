@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,7 +25,7 @@ public class UserDao implements Dao<User>{
     }
 
     @Override
-    public Object getAll() {
+    public List<User> getAll() {
         ArrayList<User> list = new ArrayList();
         String sql = "SELECT * FROM user";
         Connection conn = DatabaseHelper.getConnect();
